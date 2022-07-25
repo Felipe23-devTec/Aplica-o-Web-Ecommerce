@@ -5,11 +5,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebEcommerce.Entities
+namespace WebbAppEcommerce.Entities
 {
     [Table("tb_Pedido")]
     public class Pedido
     {
+ 
         [Key]
         public int IdPEdido { get; set; }
         public virtual Cliente Cliente { get; set; }

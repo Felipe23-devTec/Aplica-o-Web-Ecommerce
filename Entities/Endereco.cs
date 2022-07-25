@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebEcommerce.Entities
+namespace WebbAppEcommerce.Entities
 {
     [Table("tb_Endereco")]
     public class Endereco
@@ -17,5 +17,7 @@ namespace WebEcommerce.Entities
         public string UF { get; set; }
         public string Bairro { get; set; }
         public string Cep { get; set; }
+    
     }
+
 }

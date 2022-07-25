@@ -9,6 +9,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebbAppEcommerce.Repository;
+using WebbAppEcommerce.Repository.impl;
+using WebbAppEcommerce.Service;
+using WebbAppEcommerce.Service.impl;
 using WebEcommerce.Data;
 
 namespace WebbAppEcommerce
@@ -28,6 +32,9 @@ namespace WebbAppEcommerce
             services.AddControllersWithViews();
             services.AddEntityFrameworkSqlServer()
                 .AddDbContext<BancoContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DataBase")));
+
+            services.AddScoped<IProdutoRepository, ProdutoRepository>();
+            services.AddScoped<IProdutoService, ProdutoService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

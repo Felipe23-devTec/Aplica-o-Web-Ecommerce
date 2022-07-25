@@ -3,14 +3,23 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebbAppEcommerce.Repository.impl;
+using WebbAppEcommerce.Service.impl;
 
 namespace WebEcommerce.Controllers
 {
     public class PedidosController : Controller
     {
+        private readonly IProdutoService _produtoService;
+
+        public PedidosController(IProdutoService produtoService)
+        {
+            _produtoService = produtoService;
+        }
         public IActionResult Carrossel()
         {
-            return View();
+            var listaprodutos = _produtoService.ListarProdutos();
+            return View(listaprodutos);
         }
 
         public IActionResult Resumo()
