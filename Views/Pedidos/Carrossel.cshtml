@@ -1,5 +1,9 @@
-﻿@model List<WebbAppEcommerce.Entities.Produto>
-<h3>Catálogo</h3>
+﻿@{ 
+    ViewData["title"] = "Carroseel";
+}
+
+@model List<WebbAppEcommerce.Entities.Produto>
+<h3 class="title-catalogo">Catálogo</h3>
 <div id="my-carousel" class="carousel slide" data-ride="carousel">
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
@@ -23,7 +27,7 @@
                                     <div class="produto-nome">@produto.NomeProduto</div>
                                     <div><h4><strong>@produto.Preco</strong></h4></div>
                                     <div class="text-center">
-                                        <a href="/" class="btn btn-success">Adicionar</a>
+                                        <a asp-action="Carrinho" asp-route-codigo="@produto.CodigoProduto" class="btn btn-success">Adicionar</a>
                                     </div>
                                 </div>
                             </div>

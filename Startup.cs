@@ -30,11 +30,21 @@ namespace WebbAppEcommerce
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDistributedMemoryCache();
+
+            services.AddSession();
             services.AddEntityFrameworkSqlServer()
                 .AddDbContext<BancoContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DataBase")));
 
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
+            services.AddScoped<IPedidoRepository, PedidoRepository>();
+            services.AddScoped<IPedidoItemRepository, PedidoItemRepository>();
+            services.AddScoped<IClienteRepository, ClienteRepository>();
+
             services.AddScoped<IProdutoService, ProdutoService>();
+            services.AddScoped<IPedidoItemService, PedidoItemService>();
+            services.AddScoped<IClienteService, ClienteService>();
+            services.AddScoped<IPedidoService, PedidoService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,12 +66,13 @@ namespace WebbAppEcommerce
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Pedidos}/{action=Carrossel}/{id?}");
+                    pattern: "{controller=Pedidos}/{action=Carrossel}/{codigo?}");
             });
         }
     }
