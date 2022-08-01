@@ -14,6 +14,7 @@ namespace WebbAppEcommerce.Entities
         public int IdItemPedido { get; set; }
         public decimal PrecoUnitario { get; set; }
         public int Quantidade { get; set; }
-        public virtual Produto Produto { get; set; }
+        public Pedido Pedido { get;  set; }
+        public Produto Produto { get;  set; }
     }
 }

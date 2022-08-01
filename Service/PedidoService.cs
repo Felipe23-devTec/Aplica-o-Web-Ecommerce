@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebbAppEcommerce.Entities;
 using WebbAppEcommerce.Repository.impl;
 using WebbAppEcommerce.Service.impl;
 
@@ -14,6 +15,14 @@ namespace WebbAppEcommerce.Service
         public PedidoService(IPedidoRepository pedidoRepository)
         {
             _pedidoRepository = pedidoRepository;
+        }
+        public Pedido GetPedido()
+        {
+            return _pedidoRepository.GetPedido();
+        }
+        public void AdicionarItem(string codigo)
+        {
+            _pedidoRepository.AdicionarItem(codigo);
         }
     }
 }

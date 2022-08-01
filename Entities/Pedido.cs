@@ -13,7 +13,8 @@ namespace WebbAppEcommerce.Entities
  
         [Key]
         public int IdPEdido { get; set; }
-        public virtual Cliente Cliente { get; set; }
-        public virtual ItemPedido ItemPedido { get; set; }
+        public List<ItemPedido> Itens { get; private set; } = new List<ItemPedido>();
+        public  virtual Cliente Cliente { get; private set; }
     }
+
 }
