@@ -26,7 +26,8 @@ namespace WebEcommerce.Controllers
 
         public IActionResult Resumo()
         {
-            return View();
+            var pedido = _pedidoService.GetPedido();
+            return View(pedido);
         }
         public IActionResult Cadastro()
         {

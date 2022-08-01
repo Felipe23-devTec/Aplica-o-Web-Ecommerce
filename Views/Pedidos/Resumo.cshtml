@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["title"] = "Resumo Pedido";
 }
+@model WebbAppEcommerce.Entities.Pedido
 
 <h3>Resumo do Pedido</h3>
 
@@ -8,7 +9,7 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-md-12">
-                <h3>Nº do Pedido: 123</h3>
+                <h3>Nº do Pedido: @(Model.IdPEdido)</h3>
             </div>
         </div>
         <hr />
@@ -35,29 +36,18 @@
                 <h3>Quantidade</h3>
             </div>
         </div>
-        <div class="row">
+        @foreach (var pedido in Model.Itens)
+        {
+
+
+            <div class="row">
             <div class="col-md-10">
-                <div>Arduino Pr&#xE1;tico</div>
+                <div>@(pedido.Produto.NomeProduto)</div>
             </div>
             <div class="col-md-2">
-                <div class="pull-right">2</div>
+                <div class="pull-right">@(pedido.Quantidade)</div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-10">
-                <div>PostgreSQL</div>
-            </div>
-            <div class="col-md-2">
-                <div class="pull-right">3</div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-10">
-                <div>Scala</div>
-            </div>
-            <div class="col-md-2">
-                <div class="pull-right">1</div>
-            </div>
-        </div>
+        }
     </div>
 </div>
