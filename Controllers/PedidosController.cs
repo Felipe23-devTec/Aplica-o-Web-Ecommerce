@@ -43,5 +43,10 @@ namespace WebEcommerce.Controllers
 
             return View(listaItensPedidos.Itens);
         }
-    }
+        [HttpPost]
+        public void UpdateQuantidade([FromBody]ItemPedido itemPedido)
+        {
+
+        }
+    } 
 }
