@@ -13,10 +13,12 @@ namespace WebEcommerce.Controllers
     {
         private readonly IProdutoService _produtoService;
         private readonly IPedidoService _pedidoService;
-        public PedidosController(IProdutoService produtoService, IPedidoService pedidoService)
+        private readonly IPedidoItemService _pedidoItemService;
+        public PedidosController(IProdutoService produtoService, IPedidoService pedidoService, IPedidoItemService pedidoItemService)
         {
             _produtoService = produtoService;
             _pedidoService = pedidoService;
+            _pedidoItemService = pedidoItemService;
         }
         public IActionResult Carrossel()
         {
@@ -46,7 +48,7 @@ namespace WebEcommerce.Controllers
         [HttpPost]
         public void UpdateQuantidade([FromBody]ItemPedido itemPedido)
         {
-
+            _pedidoItemService.AtualizarQuantidade(itemPedido);
         }
     } 
 }

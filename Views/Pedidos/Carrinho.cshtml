@@ -33,19 +33,19 @@
             <div class="col-md-3">
                 <img class="img-produto-carrinho" src="/images/produtos/large_@(item.Produto.CodigoProduto).jpg" />
             </div>
-            <div class="col-md-3">@item.Produto.NomeProduto)</div>
+            <div class="col-md-3">@item.Produto.NomeProduto</div>
             <div class="col-md-2 text-center">R$ @item.PrecoUnitario)</div>
             <div class="col-md-2 text-center">
                 <div class="input-group">
                     <span class="input-group-btn">
-                        <button class="btn btn-default">
+                        <button class="btn btn-default" onclick="carrinho.ClickDecremento(this)">
                             <span class="glyphicon-minus"></span>
                         </button>
                     </span>
-                    <input type="text" value="2"
-                           class="form-control text-center" />
+                    <input type="text" value="@(item.Quantidade)"
+                           class="form-control text-center" onkeyup="carrinho.updateQuantidade(this)"/>
                     <span class="input-group-btn">
-                        <button class="btn btn-default" onclick="ClickIncremento(this)">
+                        <button class="btn btn-default" onclick="carrinho.ClickIncremento(this)">
                             <span class="glyphicon-plus"></span>
                         </button>
                     </span>
@@ -91,22 +91,7 @@
 
 @section Scripts
 {
-    <script type="text/javascript">
-        function ClickIncremento(btn) {
-            var linhaDoitem = $(btn).parents('[item-id]');
-            var itemId = $(linhaDoitem).attr('item-id');
-            var qtdItem = $(linhaDoitem).find('input').val();
-            var data = {
-                IdItemPedido: itemId,
-                Quantidade: qtdItem
-            };
-            $.ajax({
-                url: '/Pedidos/UpdateQuantidade',
-                type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify(data)
-            });
-            debugger;
-        }
+    <script src="~/js/Carrinho.js">
+       
     </script>
 }

@@ -70,7 +70,7 @@ namespace WebbAppEcommerce.Repository
             }
             else
             {
-                throw new ArgumentException("Pedido já existe no carrinho desse pedido");
+                return;
 
             }
         }
