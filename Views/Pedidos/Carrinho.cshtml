@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["title"] = "Carrinho";
 }
-@model List<WebbAppEcommerce.Entities.ItemPedido>
+@model WebbAppEcommerce.Models.ViewModels.CarrinhoViewModel
 <h3>Meu Carrinho</h3>
 
 <div class="panel panel-default">
@@ -25,7 +25,7 @@
         </div>
     </div>
     <div class="panel-body">
-        @foreach (var item in Model)
+        @foreach (var item in Model.Itens)
         {
 
 
@@ -42,7 +42,7 @@
                             <span class="glyphicon-minus"></span>
                         </button>
                     </span>
-                    <input type="text" value="@(item.Quantidade)"
+                    <input type="number" value="@(item.Quantidade)"
                            class="form-control text-center" onkeyup="carrinho.updateQuantidade(this)"/>
                     <span class="input-group-btn">
                         <button class="btn btn-default" onclick="carrinho.ClickIncremento(this)">
@@ -63,13 +63,13 @@
         <div class="row">
             <div class="col-md-10">
                 <span numero-itens>
-                    Total: @(Model.Count())
+                    Total: @(Model.Quantidade)
                     itens
                 </span>
             </div>
             <div class="col-md-2">
                 Total: R$ <span class="pull-right" total>
-                    @(Model.Sum(i => i.PrecoUnitario * i.Quantidade))
+                    @(Model.Total)
                 </span>
             </div>
         </div>

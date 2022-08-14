@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebbAppEcommerce.Entities;
+using WebbAppEcommerce.Models;
+using WebbAppEcommerce.Models.ViewModels;
 using WebbAppEcommerce.Repository.impl;
 using WebEcommerce.Data;
 
@@ -14,11 +16,13 @@ namespace WebbAppEcommerce.Repository
     {
         private readonly BancoContext _context;
         private readonly IHttpContextAccessor _httpContext;
+        private readonly IPedidoItemRepository _pedidoItemRepository;
 
-        public PedidoRepository(BancoContext context, IHttpContextAccessor httpContextAccessor)
+        public PedidoRepository(BancoContext context, IHttpContextAccessor httpContextAccessor, IPedidoItemRepository pedidoItemRepository)
         {
             _context = context;
             _httpContext = httpContextAccessor;
+            _pedidoItemRepository = pedidoItemRepository;
 
         }
         public int? GetPedidoId()
@@ -39,7 +43,7 @@ namespace WebbAppEcommerce.Repository
                 .Where(p => p.IdPEdido == pedidoId)
                 .SingleOrDefault();
 
-            if(pedido == null)
+            if (pedido == null)
             {
                 pedido = new Pedido();
                 _context.Add(pedido);
@@ -50,8 +54,8 @@ namespace WebbAppEcommerce.Repository
         }
         public void AdicionarItem(string codigo)
         {
-            var produto =_context.Produto.Where(p => p.CodigoProduto == codigo).SingleOrDefault();
-            if(produto == null)
+            var produto = _context.Produto.Where(p => p.CodigoProduto == codigo).SingleOrDefault();
+            if (produto == null)
             {
                 throw new ArgumentException("Produto não encontrado");
             }
@@ -60,7 +64,7 @@ namespace WebbAppEcommerce.Repository
 
             if (itemPedido == null)
             {
-                 var itemPedidoNovo = new ItemPedido();
+                var itemPedidoNovo = new ItemPedido();
                 itemPedidoNovo.Pedido = pedido;
                 itemPedidoNovo.PrecoUnitario = produto.Preco;
                 itemPedidoNovo.Produto = produto;
@@ -73,6 +77,18 @@ namespace WebbAppEcommerce.Repository
                 return;
 
             }
+        }
+        public void UpdateQuantidade(ItemPedido itemPedido)
+        {
+
+            var itemPedidoBanco = _pedidoItemRepository.GetPedidoId(itemPedido.IdItemPedido);
+            if (itemPedidoBanco != null)
+            {
+                itemPedidoBanco.Quantidade = itemPedido.Quantidade;
+                _context.SaveChanges();
+            }
+            
+
         }
     }
 }

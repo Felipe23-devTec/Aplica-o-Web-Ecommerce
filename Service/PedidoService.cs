@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebbAppEcommerce.Entities;
+using WebbAppEcommerce.Models;
 using WebbAppEcommerce.Repository.impl;
 using WebbAppEcommerce.Service.impl;
 
@@ -23,6 +24,10 @@ namespace WebbAppEcommerce.Service
         public void AdicionarItem(string codigo)
         {
             _pedidoRepository.AdicionarItem(codigo);
+        }
+        public void UpdateQuantidade(ItemPedido itemPedido)
+        {
+            _pedidoRepository.UpdateQuantidade(itemPedido);
         }
     }
 }

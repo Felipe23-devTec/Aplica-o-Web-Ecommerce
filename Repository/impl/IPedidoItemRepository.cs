@@ -8,6 +8,6 @@ namespace WebbAppEcommerce.Repository.impl
 {
     public interface IPedidoItemRepository
     {
-        void AtualizarQuantidade(ItemPedido itemPedido);
+        public ItemPedido GetPedidoId(int pedidoId);
     }
 }

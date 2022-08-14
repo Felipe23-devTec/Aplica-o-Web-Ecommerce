@@ -3,6 +3,7 @@
         let data = this.getData(btn);
         data.Quantidade++;
         this.postQuantidade(data);
+        //Codigo para atualizar automaticamente a pagina
         setTimeout(function () {
             window.location.reload();
         }, 500);
@@ -13,6 +14,7 @@
         let data = this.getData(btn);
         data.Quantidade--;
         this.postQuantidade(data);
+       //Codigo para atualizar automaticamente a pagina
         setTimeout(function () {
             window.location.reload();
         }, 500);
@@ -21,12 +23,11 @@
         let data = this.getData(input);
         if (data.Quantidade != '') {
             this.postQuantidade(data);
+           //Codigo para atualizar automaticamente a pagina
             setTimeout(function () {
                 window.location.reload();
             }, 500);
         }
-        
-        debugger;
     }
     getData(elemento) {
         var linhaDoitem = $(elemento).parents('[item-id]');
@@ -44,6 +45,12 @@
             contentType: 'application/json',
             data: JSON.stringify(data)
         });
+           // .done(function (response) {
+            //let itemPedido = response.itemPedido;
+            //$('[item-id=' + itemPedido.IdItemPedido + ']').find('input').val(itemPedido.Quantidade);
+
+        
+        //});
     }
 }
 var carrinho = new Carrinho();

@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using WebbAppEcommerce.Entities;
 using WebbAppEcommerce.Repository.impl;
 using WebbAppEcommerce.Service.impl;
+using WebbAppEcommerce.Models.ViewModels;
+using WebbAppEcommerce.Models;
 
 namespace WebEcommerce.Controllers
 {
@@ -42,13 +44,14 @@ namespace WebEcommerce.Controllers
                 _pedidoService.AdicionarItem(codigo);
             }
             var listaItensPedidos = _pedidoService.GetPedido();
-
-            return View(listaItensPedidos.Itens);
+            var itens = listaItensPedidos.Itens;
+            CarrinhoViewModel carrinhoViewModel = new CarrinhoViewModel(itens);
+            return View(carrinhoViewModel);
         }
         [HttpPost]
-        public void UpdateQuantidade([FromBody]ItemPedido itemPedido)
+        public void UpdateQuantidade([FromBody] ItemPedido itemPedido)
         {
-            _pedidoItemService.AtualizarQuantidade(itemPedido);
+           _pedidoService.UpdateQuantidade(itemPedido);
         }
     } 
 }

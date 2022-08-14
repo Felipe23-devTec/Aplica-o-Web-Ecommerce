@@ -18,15 +18,19 @@ namespace WebbAppEcommerce.Repository
 
         }
 
-        public void AtualizarQuantidade(ItemPedido itemPedido)
+        public ItemPedido GetPedidoId(int pedidoId)
+        {
+            return _context.ItemPedidos.Where(i => i.IdItemPedido ==  pedidoId).SingleOrDefault();
+        }
+        /*public void AtualizarQuantidade(ItemPedido itemPedido)
         {
             var itemPedidoBanco = _context.ItemPedidos.Where(i => i.IdItemPedido == itemPedido.IdItemPedido).FirstOrDefault();
-            if(itemPedidoBanco != null)
+            if (itemPedidoBanco != null)
             {
                 itemPedidoBanco.Quantidade = itemPedido.Quantidade;
                 _context.SaveChanges();
             }
 
-        }
+        }*/
     }
 }
