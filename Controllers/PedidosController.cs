@@ -27,15 +27,20 @@ namespace WebEcommerce.Controllers
             var listaprodutos = _produtoService.ListarProdutos();
             return View(listaprodutos);
         }
-
-        public IActionResult Resumo()
+        [HttpPost]
+        public IActionResult Resumo(Cliente cadastro)
         {
             var pedido = _pedidoService.GetPedido();
             return View(pedido);
         }
         public IActionResult Cadastro()
         {
-            return View();
+            var pedido = _pedidoService.GetPedido();
+            if(pedido == null)
+            {
+                RedirectToAction("Carrossel");
+            }
+            return View(pedido.Cliente);
         }
         public IActionResult Carrinho(string codigo)
         {

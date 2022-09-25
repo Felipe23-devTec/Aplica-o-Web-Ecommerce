@@ -12,12 +12,17 @@ namespace WebbAppEcommerce.Entities
     {
         [Key]
         public int IdEndereco { get; set; }
-        public string Cidade { get; set; }
-        public string Municipio { get; set; }
-        public string UF { get; set; }
-        public string Bairro { get; set; }
-        public string Cep { get; set; }
-    
+        [Required]
+        public string Cidade { get; set; } = "";
+        [Required]
+        public string Municipio { get; set; } = "";
+        [Required]
+        public string UF { get; set; } = "";
+        [Required]
+        public string Bairro { get; set; } = "";
+        [Required]
+        public string Cep { get; set; } = "";
+
     }
 
 }
